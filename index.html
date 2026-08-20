@@ -1,176 +1,80 @@
-<body>
-
-<h1>Fluxograma Operacional BDR</h1>
-
-<!-- RECEPÇÃO -->
-
-<section class="process-section">
-
-    <h2 class="section-title">
-        Recepção e Qualificação
-    </h2>
-
-    <div class="flow">
-
-        <div class="box process">
-            Recebimento dos Leads pelo Marketing
-        </div>
-
-        <div class="arrow">➜</div>
-
-        <div class="box process">
-            Leitura e Exclusão de Leads Duplicados
-        </div>
-
-        <div class="arrow">➜</div>
-
-        <div class="decision">
-            <span>CNPJ Duplicado?</span>
-        </div>
-
-        <div class="arrow">➜</div>
-
-        <div class="box action">
-            Tratar Leads
-        </div>
-
-        <div class="arrow">➜</div>
-
-        <div class="decision">
-            <span>Lead Qualificado?</span>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- PROSPECÇÃO -->
-
-<section class="process-section">
-
-    <h2 class="section-title">
-        Prospecção e Contato
-    </h2>
-
-    <div class="flow">
-
-        <div class="box action">
-            Separar Decisores e Não Decisores
-        </div>
-
-        <div class="arrow">➜</div>
-
-        <div class="decision">
-            <span>É Decisor?</span>
-        </div>
-
-        <div class="arrow">➜</div>
-
-        <div class="box action">
-            Enviar Mailing Personalizado
-        </div>
-
-        <div class="arrow">➜</div>
-
-        <div class="box action">
-            Follow-up WhatsApp (7 dias)
-        </div>
-
-        <div class="arrow">➜</div>
-
-        <div class="box process">
-            Análise do Retorno
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- BANT -->
-
-<section class="process-section">
-
-    <h2 class="section-title">
-        Qualificação BANT
-    </h2>
-
-    <div class="flow">
-
-        <div class="decision">
-            <span>Deseja Mais Informações?</span>
-        </div>
-
-        <div class="arrow">➜</div>
-
-        <div class="decision">
-            <span>BANT Atendido?</span>
-        </div>
-
-        <div class="arrow">➜</div>
-
-        <div class="box success">
-            Cliente Identificado como Potencial Comprador
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- COMERCIAL -->
-
-<section class="process-section">
-
-    <h2 class="section-title">
-        Encaminhamento Comercial
-    </h2>
-
-    <div class="flow">
-
-        <div class="box action">
-            Registrar Lead no CRM
-        </div>
-
-        <div class="arrow">➜</div>
-
-        <div class="box action">
-            Registrar Solicitação
-        </div>
-
-        <div class="arrow">➜</div>
-
-        <div class="box action">
-            Enviar E-mail ao Cliente e Representante
-        </div>
-
-        <div class="arrow">➜</div>
-
-        <div class="box process">
-            Relacionamento com Cliente
-        </div>
-
-        <div class="arrow">➜</div>
-
-        <div class="box process">
-            Follow-up da Oportunidade
-        </div>
-
-        <div class="arrow">➜</div>
-
-        <div class="box action">
-            Validação dos Valores da OP
-        </div>
-
-        <div class="arrow">➜</div>
-
-        <div class="box action">
-            Forecast Comercial
-        </div>
-
-    </div>
-
-</section>
-
-</body>
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Fluxograma operacional da área de BDR"
+    >
+
+    <title>Fluxograma Operacional BDR</title>
+
+    <style>
+        /* =====================================================
+           CONFIGURAÇÕES GERAIS
+        ===================================================== */
+
+        :root {
+            --cor-fundo: #f4f7fb;
+            --cor-branca: #ffffff;
+            --cor-texto: #172033;
+            --cor-texto-secundario: #526176;
+            --cor-linha: #64748b;
+
+            --azul-fundo: #dbeafe;
+            --azul-borda: #2563eb;
+
+            --roxo-fundo: #ede9fe;
+            --roxo-borda: #7c3aed;
+
+            --vermelho-fundo: #fee2e2;
+            --vermelho-borda: #ef4444;
+
+            --verde-fundo: #dcfce7;
+            --verde-borda: #16a34a;
+
+            --amarelo-fundo: #fef3c7;
+            --amarelo-borda: #d97706;
+
+            --cinza-fundo: #f1f5f9;
+            --cinza-borda: #64748b;
+
+            --sombra:
+                0 10px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-width: 320px;
+            background: var(--cor-fundo);
+            color: var(--cor-texto);
+            font-family:
+                "Segoe UI",
+                Arial,
+                Helvetica,
+                sans-serif;
+            line-height: 1.5;
+        }
+
+        /* =====================================================
+           CABEÇALHO
+        ===================================================== */
+
+        .page-header {
+            padding: 38px 24px 28px
