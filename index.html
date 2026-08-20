@@ -1,281 +1,176 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fluxograma BDR - Bertolini BSA</title>
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
-}
-
-body{
-    background:#f3f4f6;
-    padding:30px;
-}
-
-h1{
-    text-align:center;
-    margin-bottom:30px;
-    color:#1e293b;
-}
-
-.flow{
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    justify-content:center;
-    gap:20px;
-}
-
-.box{
-    width:220px;
-    min-height:100px;
-    background:white;
-    border:2px solid #2563eb;
-    border-radius:12px;
-    padding:15px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    font-weight:600;
-    color:#1e293b;
-}
-
-.process{
-    background:#dbeafe;
-}
-
-.action{
-    background:#ede9fe;
-    border-color:#7c3aed;
-}
-
-.success{
-    background:#dcfce7;
-    border-color:#16a34a;
-}
-
-.arrow{
-    font-size:35px;
-    color:#64748b;
-}
-
-.decision{
-    width:170px;
-    height:170px;
-    background:#fee2e2;
-    border:2px solid #ef4444;
-    transform:rotate(45deg);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.decision span{
-    transform:rotate(-45deg);
-    text-align:center;
-    width:120px;
-    font-weight:bold;
-}
-
-.section{
-    width:100%;
-    text-align:center;
-    margin:40px 0 10px;
-    font-size:22px;
-    font-weight:bold;
-    color:#475569;
-}
-
-footer{
-    margin-top:50px;
-    text-align:center;
-    color:#64748b;
-}
-</style>
-
-</head>
 <body>
 
 <h1>Fluxograma Operacional BDR</h1>
 
-<div class="section">
-Recepção e Qualificação
-</div>
+<!-- RECEPÇÃO -->
 
-<div class="flow">
+<section class="process-section">
 
-<div class="box process">
-Recebimento dos Leads pelo Marketing
-</div>
+    <h2 class="section-title">
+        Recepção e Qualificação
+    </h2>
 
-<div class="arrow">➜</div>
+    <div class="flow">
 
-<div class="box process">
-Leitura e Exclusão de Leads Duplicados
-</div>
+        <div class="box process">
+            Recebimento dos Leads pelo Marketing
+        </div>
 
-<div class="arrow">➜</div>
+        <div class="arrow">➜</div>
 
-<div class="decision">
-<span>CNPJ Duplicado?</span>
-</div>
+        <div class="box process">
+            Leitura e Exclusão de Leads Duplicados
+        </div>
 
-<div class="arrow">➜</div>
+        <div class="arrow">➜</div>
 
-<div class="box action">
-Tratar Leads
-</div>
+        <div class="decision">
+            <span>CNPJ Duplicado?</span>
+        </div>
 
-<div class="arrow">➜</div>
+        <div class="arrow">➜</div>
 
-<div class="decision">
-<span>Lead Qualificado?</span>
-</div>
+        <div class="box action">
+            Tratar Leads
+        </div>
 
-</div>
+        <div class="arrow">➜</div>
 
-<div class="section">
-Prospecção e Contato
-</div>
+        <div class="decision">
+            <span>Lead Qualificado?</span>
+        </div>
 
-<div class="flow">
+    </div>
 
-<div class="box action">
-Separar Decisores e Não Decisores
-</div>
+</section>
 
-<div class="arrow">➜</div>
 
-<div class="decision">
-<span>É Decisor?</span>
-</div>
+<!-- PROSPECÇÃO -->
 
-<div class="arrow">➜</div>
+<section class="process-section">
 
-<div class="box action">
-Enviar Mailing Personalizado
-</div>
+    <h2 class="section-title">
+        Prospecção e Contato
+    </h2>
 
-<div class="arrow">➜</div>
+    <div class="flow">
 
-<div class="box action">
-Follow-up WhatsApp (7 dias)
-</div>
+        <div class="box action">
+            Separar Decisores e Não Decisores
+        </div>
 
-<div class="arrow">➜</div>
+        <div class="arrow">➜</div>
 
-<div class="box process">
-Análise do Retorno
-</div>
+        <div class="decision">
+            <span>É Decisor?</span>
+        </div>
 
-</div>
+        <div class="arrow">➜</div>
 
-<div class="section">
-Qualificação BANT
-</div>
+        <div class="box action">
+            Enviar Mailing Personalizado
+        </div>
 
-<div class="flow">
+        <div class="arrow">➜</div>
 
-<div class="decision">
-<span>Deseja Mais Informações?</span>
-</div>
+        <div class="box action">
+            Follow-up WhatsApp (7 dias)
+        </div>
 
-<div class="arrow">➜</div>
+        <div class="arrow">➜</div>
 
-<div class="decision">
-<span>BANT Atendido?</span>
-</div>
+        <div class="box process">
+            Análise do Retorno
+        </div>
 
-<div class="arrow">➜</div>
+    </div>
 
-<div class="box success">
-Cliente Identificado como Potencial Comprador
-</div>
+</section>
 
-</div>
 
-<div class="section">
-Encaminhamento Comercial
-</div>
+<!-- BANT -->
 
-<div class="flow">
+<section class="process-section">
 
-<div class="box action">
-Registrar Lead no CRM
-</div>
+    <h2 class="section-title">
+        Qualificação BANT
+    </h2>
 
-<div class="arrow">➜</div>
+    <div class="flow">
 
-<div class="box action">
-Registrar Solicitação
-</div>
+        <div class="decision">
+            <span>Deseja Mais Informações?</span>
+        </div>
 
-<div class="arrow">➜</div>
+        <div class="arrow">➜</div>
 
-<div class="box action">
-Enviar E-mail ao Cliente e Representante
-</div>
+        <div class="decision">
+            <span>BANT Atendido?</span>
+        </div>
 
-<div class="arrow">➜</div>
+        <div class="arrow">➜</div>
 
-<div class="box process">
-Relacionamento com Cliente
-</div>
+        <div class="box success">
+            Cliente Identificado como Potencial Comprador
+        </div>
 
-<div class="arrow">➜</div>
+    </div>
 
-<div class="box process">
-Follow-up da Oportunidade
-</div>
+</section>
 
-<div class="arrow">➜</div>
 
-<div class="box action">
-Validação dos Valores da OP
-</div>
+<!-- COMERCIAL -->
 
-<div class="arrow">➜</div>
+<section class="process-section">
 
-<div class="box action">
-Forecast Comercial
-</div>
+    <h2 class="section-title">
+        Encaminhamento Comercial
+    </h2>
 
-</div>
+    <div class="flow">
 
-<div class="section">
-Nutrição e Recuperação
-</div>
+        <div class="box action">
+            Registrar Lead no CRM
+        </div>
 
-<div class="flow">
+        <div class="arrow">➜</div>
 
-<div class="box action">
-Sem Retorno → Nova Tentativa
-</div>
+        <div class="box action">
+            Registrar Solicitação
+        </div>
 
-<div class="arrow">➜</div>
+        <div class="arrow">➜</div>
 
-<div class="box action">
-Criar Tarefa para 6 Meses
-</div>
+        <div class="box action">
+            Enviar E-mail ao Cliente e Representante
+        </div>
 
-<div class="arrow">➜</div>
+        <div class="arrow">➜</div>
 
-<div class="box process">
-Reter Contato para Futura Prospecção
-</div>
+        <div class="box process">
+            Relacionamento com Cliente
+        </div>
 
-</div>
+        <div class="arrow">➜</div>
 
-<footer>
-B - Budget | A - Authority | N - Need | T - Timeline
-</footer>
+        <div class="box process">
+            Follow-up da Oportunidade
+        </div>
+
+        <div class="arrow">➜</div>
+
+        <div class="box action">
+            Validação dos Valores da OP
+        </div>
+
+        <div class="arrow">➜</div>
+
+        <div class="box action">
+            Forecast Comercial
+        </div>
+
+    </div>
+
+</section>
 
 </body>
-</html>
