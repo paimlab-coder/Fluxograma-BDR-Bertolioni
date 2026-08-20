@@ -1,1632 +1,266 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fluxograma BDR</title>
+
+<style>
+
+body{
+    margin:0;
+    padding:30px;
+    font-family:Arial, sans-serif;
+    background:#f5f7fa;
+}
+
+h1{
+    text-align:center;
+    color:#1e3a5f;
+    margin-bottom:40px;
+}
+
+.section{
+    background:white;
+    padding:25px;
+    margin-bottom:30px;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.section h2{
+    text-align:center;
+    color:#1e3a5f;
+    margin-bottom:25px;
+}
+
+.flow{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    overflow-x:auto;
+    padding:15px 0;
+}
+
+.box{
+    min-width:220px;
+    min-height:100px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:15px;
+
+    text-align:center;
+
+    border-radius:10px;
+    border:2px solid;
+
+    font-weight:bold;
+}
+
+.process{
+    background:#dbeafe;
+    border-color:#2563eb;
+}
+
+.action{
+    background:#ede9fe;
+    border-color:#7c3aed;
+}
+
+.success{
+    background:#dcfce7;
+    border-color:#16a34a;
+}
+
+.decision{
+    min-width:170px;
+    height:170px;
+    background:#fee2e2;
+    border:2px solid #ef4444;
+
+    clip-path:polygon(
+        50% 0%,
+        100% 50%,
+        50% 100%,
+        0% 50%
+    );
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.arrow{
+    font-size:30px;
+    color:#64748b;
+}
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="Fluxograma operacional da área de BDR"
-    >
-
-    <title>Fluxograma Operacional BDR</title>
-
-    <style>
-        /* =====================================================
-           CONFIGURAÇÕES GERAIS
-        ===================================================== */
-
-        :root {
-            --cor-fundo: #f4f7fb;
-            --cor-branca: #ffffff;
-            --cor-texto: #172033;
-            --cor-texto-secundario: #526176;
-            --cor-linha: #64748b;
-
-            --azul-fundo: #dbeafe;
-            --azul-borda: #2563eb;
-
-            --roxo-fundo: #ede9fe;
-            --roxo-borda: #7c3aed;
-
-            --vermelho-fundo: #fee2e2;
-            --vermelho-borda: #ef4444;
-
-            --verde-fundo: #dcfce7;
-            --verde-borda: #16a34a;
-
-            --amarelo-fundo: #fef3c7;
-            --amarelo-borda: #d97706;
-
-            --cinza-fundo: #f1f5f9;
-            --cinza-borda: #64748b;
-
-            --sombra:
-                0 10px 30px rgba(15, 23, 42, 0.08);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            min-width: 320px;
-            background: var(--cor-fundo);
-            color: var(--cor-texto);
-            font-family:
-                "Segoe UI",
-                Arial,
-                Helvetica,
-                sans-serif;
-            line-height: 1.5;
-        }
-
-        /* =====================================================
-           CABEÇALHO
-        ===================================================== */
-
-        .page-header {
-            padding: 38px 24px 28px;
-            background: var(--cor-branca);
-            border-bottom: 1px solid #dbe2ea;
-            text-align: center;
-        }
-
-        .page-header h1 {
-            margin-bottom: 8px;
-            color: #102a4c;
-            font-size: clamp(26px, 4vw, 40px);
-            line-height: 1.2;
-        }
-
-        .page-header p {
-            max-width: 780px;
-            margin: 0 auto;
-            color: var(--cor-texto-secundario);
-            font-size: 16px;
-        }
-
-        /* =====================================================
-           LEGENDA
-        ===================================================== */
-
-        .legend {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px 22px;
-            margin-top: 24px;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--cor-texto-secundario);
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .legend-shape {
-            width: 22px;
-            height: 16px;
-            border: 2px solid;
-            border-radius: 4px;
-        }
-
-        .legend-process {
-            background: var(--azul-fundo);
-            border-color: var(--azul-borda);
-        }
-
-        .legend-action {
-            background: var(--roxo-fundo);
-            border-color: var(--roxo-borda);
-        }
-
-        .legend-decision {
-            background: var(--vermelho-fundo);
-            border-color: var(--vermelho-borda);
-            clip-path: polygon(
-                50% 0,
-                100% 50%,
-                50% 100%,
-                0 50%
-            );
-            border-radius: 0;
-        }
-
-        .legend-success {
-            background: var(--verde-fundo);
-            border-color: var(--verde-borda);
-        }
-
-        /* =====================================================
-           CONTEÚDO PRINCIPAL
-        ===================================================== */
-
-        main {
-            width: 100%;
-            max-width: 1800px;
-            margin: 0 auto;
-            padding: 34px 20px 60px;
-        }
-
-        .process-section {
-            margin-bottom: 34px;
-            padding: 28px 24px 32px;
-            overflow: hidden;
-            background: var(--cor-branca);
-            border: 1px solid #dbe4ef;
-            border-radius: 18px;
-            box-shadow: var(--sombra);
-        }
-
-        .section-header {
-            margin-bottom: 28px;
-            text-align: center;
-        }
-
-        .section-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 34px;
-            height: 34px;
-            margin-bottom: 10px;
-            background: #102a4c;
-            color: #ffffff;
-            border-radius: 50%;
-            font-size: 15px;
-            font-weight: 800;
-        }
-
-        .section-title {
-            color: #17365d;
-            font-size: clamp(21px, 3vw, 29px);
-            line-height: 1.25;
-        }
-
-        .section-description {
-            max-width: 720px;
-            margin: 8px auto 0;
-            color: var(--cor-texto-secundario);
-            font-size: 14px;
-        }
-
-        /* =====================================================
-           ÁREA COM ROLAGEM HORIZONTAL
-
-           Isso impede que as caixas se sobreponham quando
-           a largura da tela for pequena.
-        ===================================================== */
-
-        .flow-scroll {
-            width: 100%;
-            overflow-x: auto;
-            overflow-y: hidden;
-            padding: 16px 8px 24px;
-            scrollbar-color: #94a3b8 #e2e8f0;
-            scrollbar-width: thin;
-        }
-
-        .flow-scroll::-webkit-scrollbar {
-            height: 10px;
-        }
-
-        .flow-scroll::-webkit-scrollbar-track {
-            background: #e2e8f0;
-            border-radius: 10px;
-        }
-
-        .flow-scroll::-webkit-scrollbar-thumb {
-            background: #94a3b8;
-            border-radius: 10px;
-        }
-
-        .flow-scroll::-webkit-scrollbar-thumb:hover {
-            background: #64748b;
-        }
-
-        /* =====================================================
-           CSS GRID DO FLUXOGRAMA
-
-           Cada etapa fica em uma coluna.
-           Cada conector ocupa sua própria coluna.
-        ===================================================== */
-
-        .flow-grid {
-            display: grid;
-
-            grid-template-columns:
-                220px 76px
-                220px 76px
-                190px 76px
-                220px 76px
-                190px;
-
-            align-items: center;
-            justify-content: center;
-
-            width: max-content;
-            min-width: 100%;
-            min-height: 190px;
-
-            column-gap: 8px;
-            row-gap: 30px;
-        }
-
-        /* Fluxo com quatro elementos */
-
-        .flow-grid.four-items {
-            grid-template-columns:
-                220px 76px
-                190px 76px
-                220px 76px
-                220px;
-        }
-
-        /* Fluxo com três elementos */
-
-        .flow-grid.three-items {
-            grid-template-columns:
-                190px 76px
-                190px 76px
-                230px;
-        }
-
-        /* Fluxo comercial com sete caixas */
-
-        .flow-grid.commercial-flow {
-            grid-template-columns:
-                210px 70px
-                210px 70px
-                230px 70px
-                210px 70px
-                210px 70px
-                210px 70px
-                210px;
-        }
-
-        /* Fluxo de nutrição */
-
-        .flow-grid.nurturing-flow {
-            grid-template-columns:
-                220px 76px
-                220px 76px
-                220px 76px
-                220px;
-        }
-
-        /* =====================================================
-           CAIXAS DO FLUXOGRAMA
-        ===================================================== */
-
-        .node {
-            position: relative;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            width: 100%;
-            min-height: 112px;
-            padding: 18px;
-
-            overflow-wrap: anywhere;
-            word-break: normal;
-            hyphens: auto;
-
-            color: var(--cor-texto);
-            text-align: center;
-            font-size: 15px;
-            font-weight: 650;
-            line-height: 1.4;
-
-            border: 2px solid;
-            border-radius: 14px;
-        }
-
-        .node-content {
-            display: block;
-            width: 100%;
-            max-width: 100%;
-        }
-
-        .node-subtitle {
-            display: block;
-            margin-top: 7px;
-            color: var(--cor-texto-secundario);
-            font-size: 12px;
-            font-weight: 500;
-            line-height: 1.3;
-        }
-
-        /* Processo */
-
-        .node-process {
-            background: var(--azul-fundo);
-            border-color: var(--azul-borda);
-        }
-
-        /* Ação */
-
-        .node-action {
-            background: var(--roxo-fundo);
-            border-color: var(--roxo-borda);
-        }
-
-        /* Resultado positivo */
-
-        .node-success {
-            background: var(--verde-fundo);
-            border-color: var(--verde-borda);
-        }
-
-        /* Nutrição */
-
-        .node-nurturing {
-            background: var(--amarelo-fundo);
-            border-color: var(--amarelo-borda);
-        }
-
-        /* Encerramento */
-
-        .node-end {
-            background: var(--cinza-fundo);
-            border-color: var(--cinza-borda);
-        }
-
-        /* =====================================================
-           LOSANGOS DE DECISÃO
-
-           O clip-path cria o losango sem rotacionar a caixa.
-           Desse modo, o texto permanece horizontal e alinhado.
-        ===================================================== */
-
-        .node-decision {
-            width: 172px;
-            min-width: 172px;
-            height: 154px;
-            min-height: 154px;
-
-            justify-self: center;
-
-            padding: 33px 28px;
-
-            background: var(--vermelho-fundo);
-            border: none;
-            border-radius: 0;
-
-            clip-path: polygon(
-                50% 0,
-                100% 50%,
-                50% 100%,
-                0 50%
-            );
-
-            font-size: 14px;
-            font-weight: 750;
-            line-height: 1.25;
-        }
-
-        /* Borda visual do losango */
-
-        .decision-wrapper {
-            position: relative;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            width: 180px;
-            height: 162px;
-
-            justify-self: center;
-        }
-
-        .decision-wrapper::before {
-            position: absolute;
-            inset: 0;
-            content: "";
-
-            background: var(--vermelho-borda);
-
-            clip-path: polygon(
-                50% 0,
-                100% 50%,
-                50% 100%,
-                0 50%
-            );
-        }
-
-        .decision-wrapper .node-decision {
-            position: relative;
-            z-index: 1;
-
-            width: 174px;
-            min-width: 174px;
-            height: 156px;
-            min-height: 156px;
-        }
-
-        /* =====================================================
-           CONECTORES SVG
-        ===================================================== */
-
-        .connector {
-            position: relative;
-
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-            width: 76px;
-            min-width: 76px;
-            min-height: 74px;
-
-            align-self: center;
-        }
-
-        .connector svg {
-            display: block;
-            width: 68px;
-            height: 30px;
-            overflow: visible;
-        }
-
-        .connector-line {
-            stroke: var(--cor-linha);
-            stroke-width: 3;
-            stroke-linecap: round;
-        }
-
-        .connector-head {
-            fill: var(--cor-linha);
-        }
-
-        /* Texto abaixo da seta */
-
-        .connector-label {
-            position: absolute;
-            top: 48px;
-            left: 50%;
-
-            min-width: 48px;
-            padding: 3px 8px;
-
-            transform: translateX(-50%);
-
-            background: #ffffff;
-            color: #475569;
-
-            border: 1px solid #cbd5e1;
-            border-radius: 20px;
-
-            text-align: center;
-            white-space: nowrap;
-
-            font-size: 11px;
-            font-weight: 750;
-            line-height: 1.2;
-        }
-
-        .connector-label.yes {
-            color: #166534;
-            border-color: #86efac;
-            background: #f0fdf4;
-        }
-
-        .connector-label.no {
-            color: #991b1b;
-            border-color: #fca5a5;
-            background: #fff7f7;
-        }
-
-        /* =====================================================
-           INFORMAÇÕES SOBRE O BANT
-        ===================================================== */
-
-        .bant-details {
-            display: grid;
-            grid-template-columns:
-                repeat(4, minmax(180px, 1fr));
-
-            gap: 14px;
-
-            margin-top: 28px;
-            padding-top: 24px;
-
-            border-top: 1px solid #e2e8f0;
-        }
-
-        .bant-card {
-            min-height: 116px;
-            padding: 17px;
-
-            background: #f8fafc;
-            border: 1px solid #dbe4ef;
-            border-radius: 12px;
-        }
-
-        .bant-letter {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-
-            width: 32px;
-            height: 32px;
-            margin-bottom: 9px;
-
-            background: #17365d;
-            color: #ffffff;
-
-            border-radius: 8px;
-
-            font-size: 15px;
-            font-weight: 800;
-        }
-
-        .bant-card h3 {
-            margin-bottom: 5px;
-            color: #17365d;
-            font-size: 15px;
-        }
-
-        .bant-card p {
-            color: var(--cor-texto-secundario);
-            font-size: 13px;
-            line-height: 1.4;
-        }
-
-        /* =====================================================
-           OBSERVAÇÃO FINAL
-        ===================================================== */
-
-        .final-note {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-
-            background: #eff6ff;
-            border: 1px solid #bfdbfe;
-            border-left: 5px solid var(--azul-borda);
-            border-radius: 12px;
-
-            color: #1e3a5f;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        /* =====================================================
-           RODAPÉ
-        ===================================================== */
-
-        footer {
-            padding: 24px;
-            background: #102a4c;
-            color: #dbeafe;
-            text-align: center;
-            font-size: 13px;
-        }
-
-        /* =====================================================
-           RESPONSIVIDADE
-        ===================================================== */
-
-        @media (max-width: 900px) {
-            main {
-                padding-right: 12px;
-                padding-left: 12px;
-            }
-
-            .process-section {
-                padding-right: 14px;
-                padding-left: 14px;
-            }
-
-            .flow-scroll {
-                justify-content: flex-start;
-            }
-
-            .flow-grid {
-                min-width: max-content;
-                justify-content: start;
-            }
-
-            .bant-details {
-                grid-template-columns:
-                    repeat(2, minmax(160px, 1fr));
-            }
-        }
-
-        @media (max-width: 560px) {
-            .page-header {
-                padding: 28px 16px 22px;
-            }
-
-            main {
-                padding-top: 20px;
-            }
-
-            .process-section {
-                margin-bottom: 22px;
-                padding-top: 22px;
-                border-radius: 14px;
-            }
-
-            .section-header {
-                margin-bottom: 18px;
-            }
-
-            .bant-details {
-                grid-template-columns: 1fr;
-            }
-
-            .legend {
-                align-items: flex-start;
-                flex-direction: column;
-                max-width: 210px;
-                margin-right: auto;
-                margin-left: auto;
-            }
-        }
-    </style>
+</style>
 </head>
 
 <body>
 
-    <!-- =====================================================
-         CABEÇALHO
-    ====================================================== -->
+<h1>Fluxograma Operacional BDR</h1>
 
-    <header class="page-header">
+<div class="section">
 
-        <h1>Fluxograma Operacional BDR</h1>
+<h2>Recepção e Qualificação</h2>
 
-        <p>
-            Processo de recebimento, qualificação, abordagem,
-            encaminhamento comercial e recuperação de leads.
-        </p>
+<div class="flow">
 
-        <div class="legend">
+<div class="box process">
+Recebimento dos Leads pelo Marketing
+</div>
 
-            <div class="legend-item">
-                <span
-                    class="legend-shape legend-process"
-                    aria-hidden="true"
-                ></span>
-                Processo
-            </div>
+<div class="arrow">→</div>
 
-            <div class="legend-item">
-                <span
-                    class="legend-shape legend-action"
-                    aria-hidden="true"
-                ></span>
-                Ação
-            </div>
+<div class="box process">
+Leitura e Exclusão de Leads Duplicados
+</div>
 
-            <div class="legend-item">
-                <span
-                    class="legend-shape legend-decision"
-                    aria-hidden="true"
-                ></span>
-                Decisão
-            </div>
-
-            <div class="legend-item">
-                <span
-                    class="legend-shape legend-success"
-                    aria-hidden="true"
-                ></span>
-                Resultado positivo
-            </div>
+<div class="arrow">→</div>
 
-        </div>
+<div class="decision">
+CNPJ Duplicado?
+</div>
 
-    </header>
+<div class="arrow">→</div>
 
+<div class="box action">
+Tratar Leads
+</div>
 
-    <main>
+<div class="arrow">→</div>
 
-        <!-- =================================================
-             1. RECEPÇÃO E QUALIFICAÇÃO
-        ================================================== -->
+<div class="decision">
+Lead Qualificado?
+</div>
 
-        <section class="process-section">
+</div>
 
-            <div class="section-header">
-
-                <span class="section-number">1</span>
-
-                <h2 class="section-title">
-                    Recepção e Qualificação
-                </h2>
-
-                <p class="section-description">
-                    Entrada, análise, deduplicação e qualificação
-                    inicial dos leads recebidos.
-                </p>
+</div>
 
-            </div>
-
-            <div class="flow-scroll">
+<div class="section">
 
-                <div class="flow-grid">
+<h2>Prospecção e Contato</h2>
 
-                    <div class="node node-process">
+<div class="flow">
 
-                        <span class="node-content">
-                            Recebimento dos Leads pelo Marketing
-                        </span>
+<div class="box action">
+Separar Decisores e Não Decisores
+</div>
 
-                    </div>
+<div class="arrow">→</div>
 
-                    <div
-                        class="connector"
-                        aria-hidden="true"
-                    >
-                        <svg viewBox="0 0 68 30">
+<div class="decision">
+É Decisor?
+</div>
 
-                            <line
-                                class="connector-line"
-                                x1="4"
-                                y1="15"
-                                x2="52"
-                                y2="15"
-                            ></line>
-
-                            <polygon
-                                class="connector-head"
-                                points="52,7 65,15 52,23"
-                            ></polygon>
-
-                        </svg>
-                    </div>
-
-                    <div class="node node-process">
-
-                        <span class="node-content">
-                            Leitura e Exclusão de Leads Duplicados
-                            <small class="node-subtitle">
-                                Verificação por CNPJ
-                            </small>
-                        </span>
-
-                    </div>
+<div class="arrow">→</div>
 
-                    <div
-                        class="connector"
-                        aria-hidden="true"
-                    >
-                        <svg viewBox="0 0 68 30">
+<div class="box action">
+Enviar Mailing
+</div>
 
-                            <line
-                                class="connector-line"
-                                x1="4"
-                                y1="15"
-                                x2="52"
-                                y2="15"
-                            ></line>
+<div class="arrow">→</div>
 
-                            <polygon
-                                class="connector-head"
-                                points="52,7 65,15 52,23"
-                            ></polygon>
+<div class="box action">
+Follow-up WhatsApp
+</div>
 
-                        </svg>
-                    </div>
+<div class="arrow">→</div>
 
-                    <div class="decision-wrapper">
+<div class="box process">
+Análise do Retorno
+</div>
 
-                        <div class="node node-decision">
-                            <span>CNPJ duplicado?</span>
-                        </div>
+</div>
 
-                    </div>
+</div>
 
-                    <div
-                        class="connector"
-                        aria-hidden="true"
-                    >
-                        <svg viewBox="0 0 68 30">
+<div class="section">
 
-                            <line
-                                class="connector-line"
-                                x1="4"
-                                y1="15"
-                                x2="52"
-                                y2="15"
-                            ></line>
+<h2>Qualificação BANT</h2>
 
-                            <polygon
-                                class="connector-head"
-                                points="52,7 65,15 52,23"
-                            ></polygon>
+<div class="flow">
 
-                        </svg>
+<div class="decision">
+Deseja Mais Informações?
+</div>
 
-                        <span class="connector-label no">
-                            Não
-                        </span>
-                    </div>
+<div class="arrow">→</div>
 
-                    <div class="node node-action">
+<div class="decision">
+BANT Atendido?
+</div>
 
-                        <span class="node-content">
-                            Tratar e Organizar os Leads
-                        </span>
+<div class="arrow">→</div>
 
-                    </div>
+<div class="box success">
+Cliente Potencial Comprador
+</div>
 
-                    <div
-                        class="connector"
-                        aria-hidden="true"
-                    >
-                        <svg viewBox="0 0 68 30">
+</div>
 
-                            <line
-                                class="connector-line"
-                                x1="4"
-                                y1="15"
-                                x2="52"
-                                y2="15"
-                            ></line>
+</div>
 
-                            <polygon
-                                class="connector-head"
-                                points="52,7 65,15 52,23"
-                            ></polygon>
+<div class="section">
 
-                        </svg>
-                    </div>
+<h2>Encaminhamento Comercial</h2>
 
-                    <div class="decision-wrapper">
+<div class="flow">
 
-                        <div class="node node-decision">
-                            <span>Lead qualificado?</span>
-                        </div>
+<div class="box action">
+Registrar Lead no CRM
+</div>
 
-                    </div>
+<div class="arrow">→</div>
 
-                </div>
+<div class="box action">
+Registrar Solicitação
+</div>
 
-            </div>
+<div class="arrow">→</div>
 
-        </section>
+<div class="box action">
+Enviar E-mail ao Cliente
+</div>
 
+<div class="arrow">→</div>
 
-        <!-- =================================================
-             2. PROSPECÇÃO E CONTATO
-        ================================================== -->
+<div class="box process">
+Relacionamento com Cliente
+</div>
 
-        <section class="process-section">
+<div class="arrow">→</div>
 
-            <div class="section-header">
+<div class="box process">
+Follow-up da Oportunidade
+</div>
 
-                <span class="section-number">2</span>
+<div class="arrow">→</div>
 
-                <h2 class="section-title">
-                    Prospecção e Contato
-                </h2>
+<div class="box action">
+Validação da OP
+</div>
 
-                <p class="section-description">
-                    Identificação do perfil do contato, abordagem
-                    personalizada e análise do retorno.
-                </p>
+<div class="arrow">→</div>
 
-            </div>
+<div class="box action">
+Forecast Comercial
+</div>
 
-            <div class="flow-scroll">
+</div>
 
-                <div class="flow-grid">
-
-                    <div class="node node-action">
-
-                        <span class="node-content">
-                            Separar Decisores e Não Decisores
-                        </span>
-
-                    </div>
-
-                    <div
-                        class="connector"
-                        aria-hidden="true"
-                    >
-                        <svg viewBox="0 0 68 30">
-
-                            <line
-                                class="connector-line"
-                                x1="4"
-                                y1="15"
-                                x2="52"
-                                y2="15"
-                            ></line>
-
-                            <polygon
-                                class="connector-head"
-                                points="52,7 65,15 52,23"
-                            ></polygon>
-
-                        </svg>
-                    </div>
-
-                    <div class="decision-wrapper">
-
-                        <div class="node node-decision">
-                            <span>É decisor?</span>
-                        </div>
-
-                    </div>
-
-                    <div
-                        class="connector"
-                        aria-hidden="true"
-                    >
-                        <svg viewBox="0 0 68 30">
-
-                            <line
-                                class="connector-line"
-                                x1="4"
-                                y1="15"
-                                x2="52"
-                                y2="15"
-                            ></line>
-
-                            <polygon
-                                class="connector-head"
-                                points="52,7 65,15 52,23"
-                            ></polygon>
-
-                        </svg>
-
-                        <span class="connector-label yes">
-                            Sim
-                        </span>
-                    </div>
-
-                    <div class="node node-action">
-
-                        <span class="node-content">
-                            Enviar Mailing Personalizado
-                        </span>
-
-                    </div>
-
-                    <div
-                        class="connector"
-                        aria-hidden="true"
-                    >
-                        <svg viewBox="0 0 68 30">
-
-                            <line
-                                class="connector-line"
-                                x1="4"
-                                y1="15"
-                                x2="52"
-                                y2="15"
-                            ></line>
-
-                            <polygon
-                                class="connector-head"
-                                points="52,7 65,15 52,23"
-                            ></polygon>
-
-                        </svg>
-                    </div>
-
-                    <div class="node node-action">
-
-                        <span class="node-content">
-                            Follow-up por WhatsApp
-                            <small class="node-subtitle">
-                                Retomada após 7 dias
-                            </small>
-                        </span>
-
-                    </div>
-
-                    <div
-                        class="connector"
-                        aria-hidden="true"
-                    >
-                        <svg viewBox="0 0 68 30">
-
-                            <line
-                                class="connector-line"
-                                x1="4"
-                                y1="15"
-                                x2="52"
-                                y2="15"
-                            ></line>
-
-                            <polygon
-                                class="connector-head"
-                                points="52,7 65,15 52,23"
-                            ></polygon>
-
-                        </svg>
-                    </div>
-
-                    <div class="node node-process">
-
-                        <span class="node-content">
-                            Análise do Retorno
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             3. QUALIFICAÇÃO BANT
-        ================================================== -->
-
-        <section class="process-section">
-
-            <div class="section-header">
-
-                <span class="section-number">3</span>
-
-                <h2 class="section-title">
-                    Qualificação BANT
-                </h2>
-
-                <p class="section-description">
-                    Avaliação do interesse e das condições do lead
-                    antes do encaminhamento para a área comercial.
-                </p>
-
-            </div>
-
-            <div class="flow-scroll">
-
-                <div class="flow-grid three-items">
-
-                    <div class="decision-wrapper">
-
-                        <div class="node node-decision">
-                            <span>
-                                Deseja mais informações, orçamento
-                                ou visita técnica?
-                            </span>
-                        </div>
-
-                    </div>
-
-                    <div
-                        class="connector"
-                        aria-hidden="true"
-                    >
-                        <svg viewBox="0 0 68 30">
-
-                            <line
-                                class="connector-line"
-                                x1="4"
-                                y1="15"
-                                x2="52"
-                                y2="15"
-                            ></line>
-
-                            <polygon
-                                class="connector-head"
-                                points="52,7 65,15 52,23"
-                            ></polygon>
-
-                        </svg>
-
-                        <span class="connector-label yes">
-                            Sim
-                        </span>
-                    </div>
-
-                    <div class="decision-wrapper">
-
-                        <div class="node node-decision">
-                            <span>BANT atendido?</span>
-                        </div>
-
-                    </div>
-
-                    <div
-                        class="connector"
-                        aria-hidden="true"
-                    >
-                        <svg viewBox="0 0 68 30">
-
-                            <line
-                                class="connector-line"
-                                x1="4"
-                                y1="15"
-                                x2="52"
-                                y2="15"
-                            ></line>
-
-                            <polygon
-                                class="connector-head"
-                                points="52,7 65,15 52,23"
-                            ></polygon>
-
-                        </svg>
-
-                        <span class="connector-label yes">
-                            Sim
-                        </span>
-                    </div>
-
-                    <div class="node node-success">
-
-                        <span class="node-content">
-                            Cliente Identificado como Potencial
-                            Comprador
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="bant-details">
-
-                <article class="bant-card">
-
-                    <span class="bant-letter">B</span>
-
-                    <h3>Budget</h3>
-
-                    <p>
-                        Verificar a existência de orçamento ou
-                        capacidade de investimento.
-                    </p>
-
-                </article>
-
-                <article class="bant-card">
-
-                    <span class="bant-letter">A</span>
-
-                    <h3>Authority</h3>
-
-                    <p>
-                        Identificar se o contato decide, influencia
-                        ou participa da aprovação.
-                    </p>
-
-                </article>
-
-                <article class="bant-card">
-
-                    <span class="bant-letter">N</span>
-
-                    <h3>Need</h3>
-
-                    <p>
-                        Compreender a necessidade, o problema e a
-                        aderência à solução.
-                    </p>
-
-                </article>
-
-                <article class="bant-card">
-
-                    <span class="bant-letter">T</span>
-
-                    <h3>Timeline</h3>
-
-                    <p>
-                        Identificar o prazo previsto para avaliação,
-                        decisão e implantação.
-                    </p>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             4. ENCAMINHAMENTO COMERCIAL
-        ================================================== -->
-
-        <section class="process-section">
-
-            <div class="section-header">
-
-                <span class="section-number">4</span>
-
-                <h2 class="section-title">
-                    Encaminhamento Comercial
-                </h2>
-
-                <p class="section-description">
-                    Registro, transferência das informações e
-                    acompanhamento da oportunidade comercial.
-                </p>
-
-            </div>
-
-            <div class="flow-scroll">
-
-                <div class="flow-grid commercial-flow">
-
-                    <div class="node node-action">
-
-                        <span class="node-content">
-                            Registrar Lead no CRM
-                        </span>
-
-                    </div>
-
-                    <div
-                        class="connector"
-                        aria-hidden="true"
-                    >
-                        <svg viewBox="0 0 68 30">
-
-                            <line
-                                class="connector-line"
-                                x1="4"
-                                y1="15"
-                                x2="52"
-                                y2="15"
-                            ></line>
-
-                            <polygon
-                                class="connector-head"
-                                points="52,7 65,15 52,23"
-                            ></polygon>
-
-                        </svg>
-                    </div>
-
-                    <div class="node node-action">
-
-                        <span class="node-content">
-                            Registrar a Solicitação
-                        </span>
-
-                    </div>
-
-                    <div
-                        class="connector"
-                        aria-hidden="true"
-                    >
-                        <svg viewBox="0 0 68 30">
-
-                            <line
-                                class="connector-line"
-                                x1="4"
-                                y1="15"
-                                x2="52"
-                                y2="15"
-                            ></line>
-
-                            <polygon
-                                class="connector-head"
-                                points="52,7 65,15 52,23"
-                            ></polygon>
-
-                        </svg>
-                    </div>
-
-                    <div class="node node-action">
-
-                        <span class="node-content">
-                            Enviar E-mail ao Cliente e Representante
-                        </span>
-
-                    </div>
-
-                    <div
-                        class="connector"
-                        aria-hidden="true"
-                    >
-                        <svg viewBox="0 0 68 30">
-
-                            <line
-                                class="connector-line"
-                                x1="4"
-                                y1="15"
-                                x2="52"
-                                y2="15"
-                            ></line>
-
-                            <polygon
-                                class="connector-head"
-                                points="52,7 65,15 52,23"
-                            ></polygon>
-
-                        </svg>
-                    </div>
-
-                    <div class="node node-process">
-
-                        <span class="node-content">
-                            Relacionamento com o Cliente
-                            <small class="node-subtitle">
-                                E-mail e WhatsApp
-                            </small>
-                        </span>
-
-                    </div>
-
-                    <div
-                        class="connector"
-                        aria-hidden="true"
-                    >
-                        <svg viewBox="0 0 68 30">
-
-                            <line
-                                class="connector-line"
-                                x1="4"
-                                y1="15"
-                                x2="52"
-                                y2="15"
-                            ></line>
-
-                            <polygon
-                                class="connector-head"
-                                points="52,7 65,15 52,23"
-                            ></polygon>
-
-                        </svg>
-                    </div>
-
-                    <div class="node node-process">
-
-                        <span class="node-content">
-                            Follow-up da Oportunidade
-                        </span>
-
-                    </div>
-
-                    <div
-                        class="connector"
-                        aria-hidden="true"
-                    >
-                        <svg viewBox="0 0 68 30">
-
-                            <line
-                                class="connector-line"
-                                x1="4"
-                                y1="15"
-                                x2="52"
-                                y2="15"
-                            ></line>
-
-                            <polygon
-                                class="connector-head"
-                                points="52,7 65,15 52,23"
-                            ></polygon>
-
-                        </svg>
-                    </div>
-
-                    <div class="node node-action">
-
-                        <span class="node-content">
-                            Validação dos Valores da OP
-                        </span>
-
-                    </div>
-
-                    <div
-                        class="connector"
-                        aria-hidden="true"
-                    >
-                        <svg viewBox="0 0 68 30">
-
-                            <line
-                                class="connector-line"
-                                x1="4"
-                                y1="15"
-                                x2="52"
-                                y2="15"
-                            ></line>
-
-                            <polygon
-                                class="connector-head"
-                                points="52,7 65,15 52,23"
-                            ></polygon>
-
-                        </svg>
-                    </div>
-
-                    <div class="node node-action">
-
-                        <span class="node-content">
-                            Forecast Comercial
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             5. NUTRIÇÃO E RECUPERAÇÃO
-        ================================================== -->
-
-        <section class="process-section">
-
-            <div class="section-header">
-
-                <span class="section-number">5</span>
-
-                <h2 class="section-title">
-                    Nutrição e Recuperação
-                </h2>
-
-                <p class="section-description">
-                    Tratamento dos contatos sem retorno, sem prazo
-                    definido ou ainda sem maturidade comercial.
-                </p>
-
-            </div>
-
-            <div class="flow-scroll">
-
-                <div class="flow-grid nurturing-flow">
-
-                    <div class="node node-nurturing">
-
-                        <span class="node-content">
-                            Sem Retorno
-                            <small class="node-subtitle">
-                                Realizar nova tentativa
-                            </small>
-                        </span>
-
-                    </div>
-
-                    <div
-                        class="connector"
-                        aria-hidden="true"
-                    >
-                        <svg viewBox="0 0 68 30">
-
-                            <line
-                                class="connector-line"
-                                x1="4"
-                                y1="15"
-                                x2="52"
-                                y2="15"
-                            ></line>
-
-                            <polygon
-                                class="connector-head"
-                                points="52,7 65,15 52,23"
-                            ></polygon>
-
-                        </svg>
-                    </div>
-
-                    <div class="node node-action">
-
-                        <span class="node-content">
-                            Criar Tarefa de Retomada
-                            <small class="node-subtitle">
-                                Nova tentativa em 7 dias
-                            </small>
-                        </span>
-
-                    </div>
-
-                    <div
-                        class="connector"
-                        aria-hidden="true"
-                    >
-                        <svg viewBox="0 0 68 30">
-
-                            <line
-                                class="connector-line"
-                                x1="4"
-                                y1="15"
-                                x2="52"
-                                y2="15"
-                            ></line>
-
-                            <polygon
-                                class="connector-head"
-                                points="52,7 65,15 52,23"
-                            ></polygon>
-
-                        </svg>
-                    </div>
-
-                    <div class="node node-action">
-
-                        <span class="node-content">
-                            Criar Tarefa de Mailing
-                            <small class="node-subtitle">
-                                Retomada em 6 meses
-                            </small>
-                        </span>
-
-                    </div>
-
-                    <div
-                        class="connector"
-                        aria-hidden="true"
-                    >
-                        <svg viewBox="0 0 68 30">
-
-                            <line
-                                class="connector-line"
-                                x1="4"
-                                y1="15"
-                                x2="52"
-                                y2="15"
-                            ></line>
-
-                            <polygon
-                                class="connector-head"
-                                points="52,7 65,15 52,23"
-                            ></polygon>
-
-                        </svg>
-                    </div>
-
-                    <div class="node node-end">
-
-                        <span class="node-content">
-                            Reter Contato para Futura Prospecção
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <div class="final-note">
-
-            <strong>Orientação de leitura:</strong>
-
-            utilize a barra horizontal de cada seção quando o
-            fluxograma for acessado em telas menores. As caixas
-            permanecem com tamanho fixo para evitar sobreposição
-            de textos, títulos, decisões e conectores.
-
-        </div>
-
-    </main>
-
-
-    <footer>
-
-        Fluxograma Operacional BDR |
-        Budget • Authority • Need • Timeline
-
-    </footer>
+</div>
 
 </body>
-
 </html>
